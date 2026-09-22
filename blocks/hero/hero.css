@@ -1,4 +1,5 @@
 /* Hero block – evo full-bleed action photography, mobile-first */
+/* stylelint-disable no-descending-specificity -- variant selectors intentionally follow base in cascade order */
 
 .hero-container .hero-wrapper {
   max-width: unset;
@@ -303,4 +304,164 @@
   background-clip: unset;
   color: var(--color-rust-bright);
   -webkit-text-fill-color: var(--color-rust-bright);
+}
+
+/* ==========================================================================
+   Promo variant — centered sale hero (matches evo.com "ONE MORE LAP")
+   Big yellow headline, white subhead, black rounded-pill CTA over photo.
+   ========================================================================== */
+.hero.promo > div:last-child {
+  justify-content: center;
+  text-align: center;
+}
+
+.hero.promo > div:last-child > div {
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  gap: var(--space-l);
+}
+
+@media (width >= 900px) {
+  .hero.promo > div:last-child > div {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+/* Headline: heavy yellow condensed with dark outline for punch on any photo */
+.hero.promo h1 {
+  color: var(--color-yellow);
+  font-size: clamp(3rem, 11vw, 7rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  text-shadow:
+    0 2px 0 rgb(0 0 0 / 30%),
+    0 4px 30px rgb(0 0 0 / 45%);
+}
+
+.hero.promo h1 em {
+  color: var(--color-yellow);
+  -webkit-text-fill-color: var(--color-yellow);
+  font-style: normal;
+}
+
+/* Subhead: white all-caps condensed, shown at all breakpoints */
+.hero.promo p:not(.button-container, .hero-tagline) {
+  display: block;
+  max-width: 720px;
+  color: #fff;
+  font-family: var(--font-family-condensed);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 3.5vw, 2rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 14px rgb(0 0 0 / 45%);
+}
+
+/* Yellow rounded-pill CTA (screenshot shows a yellow "Shop Now" pill) */
+.hero.promo p.button-container {
+  margin-top: var(--space-s);
+}
+
+.hero.promo a.button:any-link {
+  border-radius: 999px;
+  border: none;
+  padding: 20px 56px;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  background-color: var(--color-yellow);
+  color: var(--color-ink);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 30%);
+}
+
+.hero.promo a.button:any-link:hover,
+.hero.promo a.button:any-link:focus-visible {
+  background-color: #fff;
+  color: var(--color-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgb(0 0 0 / 38%);
+}
+
+/* ==========================================================================
+   Banner variant — full-bleed promo band (matches evo.com "evo is Turning 25")
+   Pink/purple glitch-style gradient, centered white content, white pill CTA.
+   Use as a no-image hero.
+   ========================================================================== */
+.hero.banner {
+  background-color: #7b2fd6;
+  background-image:
+    repeating-linear-gradient(115deg, rgb(255 255 255 / 5%) 0 2px, transparent 2px 7px),
+    repeating-linear-gradient(0deg, rgb(0 0 0 / 6%) 0 3px, transparent 3px 9px),
+    radial-gradient(ellipse 70% 90% at 18% 30%, #b23df0 0%, transparent 55%),
+    radial-gradient(ellipse 80% 90% at 82% 70%, #e42a9a 0%, transparent 55%),
+    linear-gradient(120deg, #5a2bd6 0%, #a02fd6 45%, #e42a9a 100%);
+}
+
+.hero.banner.no-image > div:last-child {
+  min-height: 340px;
+  padding: 64px var(--content-padding-inline);
+}
+
+.hero.banner > div:last-child > div {
+  align-items: center;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  gap: var(--space-m);
+}
+
+/* Eyebrow */
+.hero.banner .hero-tagline {
+  color: #fff;
+  background: none;
+  padding: 0;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+}
+
+/* Headline — big white condensed */
+.hero.banner h1,
+.hero.banner.no-image h1 {
+  color: #fff;
+  font-size: clamp(2.6rem, 8vw, 5rem);
+  line-height: 0.95;
+  text-shadow: 0 2px 24px rgb(0 0 0 / 30%);
+}
+
+.hero.banner h1 em {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-style: normal;
+}
+
+/* Subtext */
+.hero.banner p:not(.button-container, .hero-tagline),
+.hero.banner.no-image p:not(.button-container, .hero-tagline) {
+  display: block;
+  color: rgb(255 255 255 / 95%);
+  font-family: var(--body-font-family);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  text-transform: none;
+  text-shadow: 0 1px 10px rgb(0 0 0 / 35%);
+}
+
+/* White pill CTA */
+.hero.banner a.button:any-link {
+  border-radius: 999px;
+  border: none;
+  padding: 18px 44px;
+  background-color: #fff;
+  background-image: none;
+  color: var(--color-ink);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 25%);
+}
+
+.hero.banner a.button:any-link:hover,
+.hero.banner a.button:any-link:focus-visible {
+  background-color: var(--color-yellow);
+  color: var(--color-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgb(0 0 0 / 32%);
 }

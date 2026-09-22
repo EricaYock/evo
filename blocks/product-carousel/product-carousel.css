@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Product Carousel block — horizontal scroll of product cards
+   (matches evo.com "Best of Bike Sale" row)
+   ========================================================================== */
+
+.product-carousel {
+  position: relative;
+}
+
+/* Scroll viewport */
+.product-carousel-viewport {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+/* Track */
+.product-carousel-track {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-xs) 0 var(--space-l);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 78%;
+  gap: var(--space-l);
+}
+
+@media (width >= 600px) {
+  .product-carousel-track { grid-auto-columns: 42%; }
+}
+
+@media (width >= 900px) {
+  .product-carousel-track { grid-auto-columns: 25%; }
+}
+
+@media (width >= 1200px) {
+  .product-carousel-track { grid-auto-columns: 23%; }
+}
+
+/* Item */
+.product-carousel-item {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+/* Card */
+.product-carousel-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-carousel-link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Image tile — light neutral panel, rounded, like the screenshot */
+.product-carousel-image {
+  background: light-dark(#f4f4f2, var(--color-card-dark));
+  border: 1px solid light-dark(var(--color-gray-200), rgb(246 246 244 / 10%));
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-carousel-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:where(body.dark-scheme, body.theme-dark) .product-carousel-image img {
+  mix-blend-mode: normal;
+}
+
+.product-carousel-card:hover .product-carousel-image {
+  border-color: light-dark(var(--color-gray-300), rgb(80 173 71 / 40%));
+  box-shadow: 0 16px 32px light-dark(rgb(0 0 0 / 10%), rgb(0 0 0 / 40%));
+}
+
+.product-carousel-card:hover .product-carousel-image img {
+  transform: scale(1.04);
+}
+
+/* Swatch / meta row */
+.product-carousel-meta {
+  margin: var(--space-s) 0 0;
+  font-size: var(--body-font-size-s);
+  color: light-dark(var(--color-gray-600), var(--color-muted));
+}
+
+/* Name */
+.product-carousel-name {
+  margin: var(--space-s) 0 var(--space-xs);
+  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  line-height: 1.3;
+  color: light-dark(var(--color-ink), var(--color-parchment));
+}
+
+.product-carousel-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-carousel-name a:hover {
+  color: light-dark(var(--color-red-deep), var(--color-red-bright));
+}
+
+/* Price */
+.product-carousel-price {
+  margin: 0 0 var(--space-xs);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-s);
+  flex-wrap: wrap;
+}
+
+.product-carousel-price-now {
+  font-weight: 700;
+  font-size: var(--body-font-size-m);
+  color: light-dark(var(--color-red-deep), var(--color-red-bright));
+}
+
+.product-carousel-price-was {
+  font-size: var(--body-font-size-s);
+  color: light-dark(var(--color-gray-500), var(--color-muted));
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+/* Rating */
+.product-carousel-rating {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.product-carousel-stars {
+  display: inline-flex;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.product-carousel-star.star-full { color: var(--color-lime); }
+
+.product-carousel-star.star-half {
+  color: var(--color-lime);
+  opacity: 0.6;
+}
+
+.product-carousel-star.star-empty { color: light-dark(var(--color-gray-300), var(--color-gray-600)); }
+
+.product-carousel-review-count {
+  font-size: var(--body-font-size-s);
+  color: light-dark(var(--color-gray-600), var(--color-muted));
+}
+
+/* Empty state */
+.product-carousel-empty {
+  margin: 0;
+  padding: var(--space-m);
+  color: light-dark(var(--color-gray-600), var(--color-gray-400));
+}
+
+/* Controls — round arrow buttons, bottom-right like the screenshot */
+.product-carousel-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-s);
+  margin-top: var(--space-s);
+}
+
+.product-carousel-arrow {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  border: 1px solid light-dark(var(--color-gray-300), rgb(246 246 244 / 25%));
+  background: light-dark(var(--color-light), var(--color-card-dark));
+  color: light-dark(var(--color-ink), var(--color-parchment));
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
+}
+
+.product-carousel-arrow:hover {
+  background: var(--color-rust);
+  border-color: var(--color-rust);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.product-carousel-arrow:focus-visible {
+  outline: 2px solid var(--color-rust);
+  outline-offset: 2px;
+}

@@ -738,6 +738,52 @@ main > .section.warm {
   color: transparent;
 }
 
+/* section-metadata style=header-row: heading on the left, trailing CTA pill on the right.
+   Authoring: a section whose first content div holds an <h2> and a button paragraph. */
+main > .section.header-row > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-l);
+  flex-wrap: wrap;
+}
+
+main > .section.header-row h2 {
+  margin: 0;
+}
+
+main > .section.header-row .button-container {
+  margin: 0;
+}
+
+/* Rounded-pill outline CTA used by section headers (e.g. "Shop Deals") */
+/* stylelint-disable no-descending-specificity -- header-row button intentionally overrides section variants */
+main > .section.header-row a.button:any-link {
+  border-radius: 999px;
+  border: 1.5px solid light-dark(var(--color-ink), var(--color-parchment));
+  background: transparent;
+  background-image: none;
+  color: light-dark(var(--color-ink), var(--color-parchment));
+  padding: 14px 34px;
+}
+
+main > .section.header-row a.button:any-link:hover,
+main > .section.header-row a.button:any-link:focus-visible {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-light);
+  box-shadow: none;
+}
+/* stylelint-enable no-descending-specificity */
+
+/* In a heading, wrap a word in *italics* (em) to tint it evo red — used for
+   "Best of Bike Sale" / "Sale" accent in the screenshots. */
+main h2 em,
+main h1 em.accent {
+  font-style: normal;
+  color: light-dark(var(--color-rust), var(--color-rust-bright));
+}
+
 /* hide library metadata from being seen in block library */
 .library-metadata-wrapper {
   display: none;
