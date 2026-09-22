@@ -18,11 +18,17 @@ export default async function decorate(block) {
     block.append(footer);
   }
 
-  // merge social icons into copyright row
-  const sections = block.querySelectorAll('.section');
-  if (sections.length >= 4) {
-    const copyrightSection = sections[2];
-    const socialSection = sections[3];
+  const sections = [...block.querySelectorAll('.section')];
+
+  // Identify sections by content (robust to added link-column / newsletter rows).
+  const copyrightSection = sections.find((s) => /©|copyright/i.test(s.textContent));
+  const socialSection = sections.find((s) => s.querySelector('ul') && s.querySelector('.icon'));
+  const columnsSection = sections.find((s) => s.querySelectorAll('.default-content-wrapper > h3, .default-content-wrapper > h2').length >= 2);
+
+  if (columnsSection) columnsSection.classList.add('footer-columns');
+
+  // Merge social icons into the copyright row (unchanged behaviour).
+  if (copyrightSection && socialSection && copyrightSection !== socialSection) {
     const socialUl = socialSection.querySelector('ul');
     const copyrightWrapper = copyrightSection.querySelector('.default-content-wrapper');
     if (socialUl && copyrightWrapper) {

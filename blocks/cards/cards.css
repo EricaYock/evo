@@ -359,3 +359,195 @@
     max-height: 300px;
   }
 }
+
+/* ==========================================================================
+   Travel variant — two large image cards with title + copy + text link.
+   Used inside the dark "Travel with Us." panel section.
+   ========================================================================== */
+.cards.travel > ul {
+  max-width: none;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+.cards.travel > ul > li {
+  border: none;
+  border-radius: 16px;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.cards.travel > ul > li:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.cards.travel .cards-card-image {
+  border-radius: 16px;
+  aspect-ratio: 16 / 10;
+}
+
+.cards.travel .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cards.travel .cards-card-body {
+  padding: var(--space-l) 0 0;
+}
+
+.cards.travel .cards-card-body h3 {
+  margin: 0 0 var(--space-s);
+  font-size: var(--heading-font-size-l);
+}
+
+.cards.travel .cards-card-body p {
+  font-size: var(--body-font-size-m);
+}
+
+.cards.travel .cards-card-body em a {
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: var(--body-font-size-s);
+}
+
+@media (width >= 900px) {
+  .cards.travel > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Crew variant — three image cards, title + single text link (no border).
+   ========================================================================== */
+.cards.crew > ul {
+  max-width: none;
+  grid-template-columns: 1fr;
+  gap: var(--space-l);
+  margin-top: var(--space-2xl);
+}
+
+.cards.crew > ul > li {
+  border: none;
+  background: none;
+  box-shadow: none;
+}
+
+.cards.crew > ul > li:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.cards.crew .cards-card-image {
+  border-radius: 14px;
+  aspect-ratio: 16 / 10;
+}
+
+.cards.crew .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cards.crew .cards-card-body {
+  padding: var(--space-m) 0 0;
+}
+
+.cards.crew .cards-card-body h3 {
+  margin: 0 0 var(--space-xs);
+  text-transform: none;
+  font-size: var(--heading-font-size-s);
+}
+
+.cards.crew .cards-card-body em a {
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: var(--body-font-size-s);
+}
+
+@media (width >= 900px) {
+  .cards.crew > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Guides variant — article cards with a rounded category tag pill.
+   ========================================================================== */
+.cards.guides > ul {
+  max-width: none;
+  grid-template-columns: 1fr;
+  gap: var(--space-l);
+}
+
+.cards.guides > ul > li {
+  border-radius: 14px;
+}
+
+.cards.guides .cards-card-image {
+  aspect-ratio: 16 / 9;
+}
+
+.cards.guides .cards-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* First body <p> is the category tag → render as a pill */
+.cards.guides .cards-card-body p:first-child {
+  display: inline-block;
+  margin: 0 0 var(--space-s);
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: light-dark(var(--color-ink), var(--color-parchment));
+  color: light-dark(var(--color-parchment), var(--color-ink));
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+}
+
+.cards.guides .cards-card-body h3 {
+  margin: 0 0 var(--space-s);
+  text-transform: none;
+  font-size: var(--heading-font-size-s);
+}
+
+.cards.guides .cards-card-body em a {
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: var(--body-font-size-s);
+}
+
+@media (width >= 900px) {
+  .cards.guides > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Brand / ecosystem tiles: taller labels centered like brand cards */
+.cards.tiles.brands > ul > li,
+.cards.tiles.ecosystem > ul > li,
+.cards.tiles.giving > ul > li {
+  aspect-ratio: 1 / 1;
+}
+
+@media (width >= 900px) {
+  .cards.tiles.brands > ul,
+  .cards.tiles.giving > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cards.tiles.giving > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

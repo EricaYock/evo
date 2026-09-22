@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity -- footer column variants intentionally follow base rules */
 footer {
   width: 100%;
   background-color: light-dark(var(--color-rust), #080d0d);
@@ -117,5 +118,54 @@ footer .footer .icon.icon-logo :is(svg, img) {
 @media (width >= 600px) {
   footer .footer > div {
     padding: 48px var(--content-padding-inline);
+  }
+}
+
+/* ==========================================================================
+   Footer link columns (Help / About / evo Family) + Join the Fam.
+   Rendered from a section whose default content is a run of <h3> headings each
+   followed by a list of links.
+   ========================================================================== */
+footer .footer .section.footer-columns > .default-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  text-align: left;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+footer .footer .section.footer-columns h3 {
+  margin: 0 0 var(--space-s);
+  font-family: var(--font-family-condensed);
+  font-size: var(--body-font-size-l);
+  text-transform: none;
+  color: var(--color-parchment);
+}
+
+footer .footer .section.footer-columns ul {
+  list-style: none;
+  margin: 0 0 var(--space-l);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+footer .footer .section.footer-columns a:any-link {
+  color: rgb(255 255 255 / 82%);
+  text-decoration: none;
+  font-size: var(--body-font-size-s);
+}
+
+footer .footer .section.footer-columns a:hover {
+  color: var(--color-parchment);
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  footer .footer .section.footer-columns > .default-content-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    text-align: left;
   }
 }

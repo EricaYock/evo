@@ -784,6 +784,113 @@ main h1 em.accent {
   color: light-dark(var(--color-rust), var(--color-rust-bright));
 }
 
+/* stylelint-disable no-descending-specificity -- section/variant selectors intentionally follow base rules in cascade order */
+
+/* section-metadata style=header-row variant with a green accent word (e.g.
+   "Connect with Our Crew.") — evo lime instead of red. */
+main .section.accent-lime h2 em {
+  color: var(--color-lime);
+}
+
+/* section-metadata style=feature-icons: 4-up value-prop row with icon,
+   bold label, and a short underlined link (Free Shipping / Returns / etc). */
+main > .section.feature-icons .columns > div {
+  gap: var(--space-l);
+}
+
+main > .section.feature-icons .columns .icon {
+  width: 32px;
+  height: 32px;
+  color: var(--color-lime);
+}
+
+main > .section.feature-icons .columns h3 {
+  margin: var(--space-s) 0 var(--space-xs);
+  text-transform: none;
+  font-size: var(--body-font-size-l);
+}
+
+main > .section.feature-icons .columns p {
+  margin: 0;
+  font-size: var(--body-font-size-s);
+}
+
+/* section-metadata style=panel: rounded dark or light padded panel used by the
+   "Travel with Us." (ink) and "Connect with Our Crew." (light) sections. */
+main > .section.panel > div {
+  border-radius: 20px;
+  padding: var(--space-2xl) var(--space-xl);
+}
+
+@media (width >= 900px) {
+  main > .section.panel > div {
+    padding: var(--space-3xl);
+  }
+}
+
+main > .section.panel.ink {
+  background: none;
+  padding: 0;
+}
+
+main > .section.panel.ink > div {
+  background-color: var(--color-ink);
+  color: var(--color-parchment);
+}
+
+main > .section.panel.ink :is(h1, h2, h3, p, a) {
+  color: var(--color-parchment);
+}
+
+/* header-row-inner keeps a heading + pill CTA on one line (used standalone in
+   Travel / Guides / Giving sections and inside panels). */
+.header-row-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-l);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
+}
+
+.header-row-inner h2 {
+  margin: 0;
+}
+
+.header-row-inner .button-container {
+  margin: 0;
+}
+
+/* Pill CTAs used by these section headers (View all Trips / Shop Deals etc.) */
+.header-row-inner a.button:any-link {
+  border-radius: 999px;
+  border: 1.5px solid light-dark(var(--color-ink), var(--color-parchment));
+  background: transparent;
+  background-image: none;
+  color: light-dark(var(--color-ink), var(--color-parchment));
+  padding: 14px 34px;
+}
+
+main > .section.panel.ink .header-row-inner a.button:any-link {
+  border-color: var(--color-parchment);
+  color: var(--color-parchment);
+}
+
+/* "Connect with Our Crew." light panel: centered intro text */
+main > .section.crew-section p {
+  max-width: 620px;
+}
+
+/* "This is evo" — center the about columns and constrain text width */
+main > .section.center-about .columns > div > div {
+  text-align: center;
+}
+
+main > .section.center-about .columns h2 {
+  font-size: var(--heading-font-size-xl);
+}
+/* stylelint-enable no-descending-specificity */
+
 /* hide library metadata from being seen in block library */
 .library-metadata-wrapper {
   display: none;
