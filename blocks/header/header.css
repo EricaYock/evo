@@ -678,6 +678,15 @@ header nav .nav-tools {
   justify-content: flex-end;
 }
 
+/* Tool items are wrapped in .default-content-wrapper by the pipeline; lay them
+   out horizontally so search / links / toggle / sign-in sit on one row rather
+   than stacking (which made the header too tall). */
+header nav .nav-tools .default-content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--nav-gap);
+}
+
 header nav .nav-tools p {
   margin: 0;
 }
