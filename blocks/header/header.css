@@ -61,6 +61,56 @@ header .nav-wrapper {
   box-shadow: none;
 }
 
+/* Announcement bar — full-width evo-red promo strip above the header */
+header .nav-announcement {
+  background-color: var(--color-rust);
+  color: #fff;
+  text-align: center;
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  padding: 8px var(--content-padding-inline);
+}
+
+header .nav-announcement p { margin: 0; }
+
+header .nav-announcement a:any-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Utility strip — slim row of secondary links (desktop only, like evo.com) */
+header .nav-utility {
+  display: none;
+}
+
+@media (width >= 900px) {
+  header .nav-utility {
+    display: block;
+    border-bottom: var(--border-heritage);
+    padding: 8px var(--space-xl);
+  }
+
+  header .nav-utility ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-l);
+    font-size: var(--body-font-size-xs);
+    font-weight: 600;
+  }
+
+  header .nav-utility a:any-link {
+    color: light-dark(var(--color-ink), var(--color-parchment));
+    text-decoration: none;
+  }
+
+  header .nav-utility a:hover {
+    color: light-dark(var(--color-rust), var(--color-rust-bright));
+  }
+}
+
 /* mobile: base layout */
 header nav {
   box-sizing: border-box;

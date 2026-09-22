@@ -539,6 +539,41 @@ export default async function decorate(block) {
   if (!nav.getAttribute('aria-label')) nav.setAttribute('aria-label', 'Main');
   if (!nav.getAttribute('aria-expanded')) nav.setAttribute('aria-expanded', 'false');
 
+  /*
+   * Optional leading rows before the brand row:
+   *   - announcement bar: a row whose only content is a single paragraph
+   *     (promo message, optionally a link) and NO list — rendered as a
+   *     full-width bar above the header.
+   *   - utility links: a row whose only content is a <ul> of plain links
+   *     (no nested <ul>, no images) — rendered as a slim utility strip.
+   * Both are detected structurally so authors don't need special syntax.
+   * The remaining rows map to brand / sections / tools in order.
+   */
+  const isAnnouncementRow = (row) => {
+    const kids = [...row.children];
+    return kids.length === 1 && kids[0].tagName === 'P'
+      && !row.querySelector('ul, picture, img, .icon');
+  };
+  const isUtilityRow = (row) => {
+    const kids = [...row.children];
+    return kids.length === 1 && kids[0].tagName === 'UL'
+      && !row.querySelector('ul ul, picture, img, .icon');
+  };
+
+  let announcement = null;
+  let utility = null;
+  // Only the first one or two rows are eligible (before the brand row).
+  if (nav.children[0] && isAnnouncementRow(nav.children[0])) {
+    announcement = nav.children[0];
+    announcement.classList.add('nav-announcement');
+    announcement.remove();
+  }
+  if (nav.children[0] && isUtilityRow(nav.children[0])) {
+    utility = nav.children[0];
+    utility.classList.add('nav-utility');
+    utility.remove();
+  }
+
   ['brand', 'sections', 'tools'].forEach((c, i) => nav.children[i]?.classList.add(`nav-${c}`));
 
   const tools = nav.querySelector('.nav-tools');
@@ -589,8 +624,25 @@ export default async function decorate(block) {
 
   const wrapper = document.createElement('div');
   wrapper.className = 'nav-wrapper';
+  // Announcement bar and utility strip sit above the main nav row.
+  if (announcement) wrapper.append(announcement);
+  if (utility) wrapper.append(utility);
   wrapper.append(nav);
   block.append(wrapper);
+
+  // The wrapper is position:fixed; reserve its full height on the <header>
+  // placeholder so page content isn't hidden beneath the extra bars.
+  if (announcement || utility) {
+    const headerEl = block.closest('header') || block.parentElement;
+    const syncHeaderHeight = () => {
+      if (!DESKTOP.matches && nav.getAttribute('aria-expanded') === 'true') return;
+      const h = wrapper.getBoundingClientRect().height;
+      if (h && headerEl) headerEl.style.height = `${Math.round(h)}px`;
+    };
+    syncHeaderHeight();
+    window.addEventListener('resize', syncHeaderHeight);
+    window.addEventListener('load', syncHeaderHeight);
+  }
 
   toggleMobile(nav, false, body);
   syncMobileNavHeight(nav);
