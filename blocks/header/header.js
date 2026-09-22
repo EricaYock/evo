@@ -549,15 +549,23 @@ export default async function decorate(block) {
    * Both are detected structurally so authors don't need special syntax.
    * The remaining rows map to brand / sections / tools in order.
    */
+  // Section content may be wrapped in a .default-content-wrapper by the
+  // decoration pipeline; unwrap one level when classifying.
+  const rowContent = (row) => {
+    const wrapper = row.querySelector(':scope > .default-content-wrapper');
+    return wrapper || row;
+  };
   const isAnnouncementRow = (row) => {
-    const kids = [...row.children];
+    const inner = rowContent(row);
+    const kids = [...inner.children];
     return kids.length === 1 && kids[0].tagName === 'P'
-      && !row.querySelector('ul, picture, img, .icon');
+      && !inner.querySelector('ul, picture, img, .icon');
   };
   const isUtilityRow = (row) => {
-    const kids = [...row.children];
+    const inner = rowContent(row);
+    const kids = [...inner.children];
     return kids.length === 1 && kids[0].tagName === 'UL'
-      && !row.querySelector('ul ul, picture, img, .icon');
+      && !inner.querySelector('ul ul, picture, img, .icon');
   };
 
   let announcement = null;
@@ -630,19 +638,11 @@ export default async function decorate(block) {
   wrapper.append(nav);
   block.append(wrapper);
 
-  // The wrapper is position:fixed; reserve its full height on the <header>
-  // placeholder so page content isn't hidden beneath the extra bars.
-  if (announcement || utility) {
-    const headerEl = block.closest('header') || block.parentElement;
-    const syncHeaderHeight = () => {
-      if (!DESKTOP.matches && nav.getAttribute('aria-expanded') === 'true') return;
-      const h = wrapper.getBoundingClientRect().height;
-      if (h && headerEl) headerEl.style.height = `${Math.round(h)}px`;
-    };
-    syncHeaderHeight();
-    window.addEventListener('resize', syncHeaderHeight);
-    window.addEventListener('load', syncHeaderHeight);
-  }
+  // The wrapper is position:fixed; flag the presence of the extra bars so CSS
+  // can reserve their (fixed) height on the <header> placeholder. Measuring in
+  // JS is avoided because the fixed wrapper also contains tall mega panels.
+  if (announcement) block.classList.add('has-announcement');
+  if (utility) block.classList.add('has-utility');
 
   toggleMobile(nav, false, body);
   syncMobileNavHeight(nav);

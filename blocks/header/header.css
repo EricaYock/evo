@@ -61,14 +61,35 @@ header .nav-wrapper {
   box-shadow: none;
 }
 
+/* Reserve extra placeholder height for the fixed announcement/utility bars so
+   page content isn't hidden beneath them. Bars have fixed heights (below). */
+header:has(.header.has-announcement) {
+  height: calc(var(--nav-height) + var(--announce-height, 40px));
+}
+
+@media (width >= 900px) {
+  header:has(.header.has-utility) {
+    height: calc(var(--nav-height) + var(--utility-height, 38px));
+  }
+
+  header:has(.header.has-announcement):has(.header.has-utility) {
+    height: calc(var(--nav-height) + var(--announce-height, 40px) + var(--utility-height, 38px));
+  }
+}
+
 /* Announcement bar — full-width evo-red promo strip above the header */
 header .nav-announcement {
+  box-sizing: border-box;
+  height: var(--announce-height, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--color-rust);
   color: #fff;
   text-align: center;
   font-size: var(--body-font-size-s);
   font-weight: 600;
-  padding: 8px var(--content-padding-inline);
+  padding: 0 var(--content-padding-inline);
 }
 
 header .nav-announcement p { margin: 0; }
@@ -86,9 +107,12 @@ header .nav-utility {
 
 @media (width >= 900px) {
   header .nav-utility {
-    display: block;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: var(--utility-height, 38px);
     border-bottom: var(--border-heritage);
-    padding: 8px var(--space-xl);
+    padding: 0 var(--space-xl);
   }
 
   header .nav-utility ul {
