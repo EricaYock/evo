@@ -1,4 +1,4 @@
-/* Hero block – Heritage Elite, mobile-first */
+/* Hero block – evo full-bleed action photography, mobile-first */
 
 .hero-container .hero-wrapper {
   max-width: unset;
@@ -7,7 +7,7 @@
 
 .hero {
   position: relative;
-  background-color: light-dark(var(--color-parchment), var(--color-obsidian));
+  background-color: var(--color-ink);
 }
 
 /* Image */
@@ -21,15 +21,14 @@
   line-height: 0;
 }
 
-/* Gradient fade effect at the bottom of the hero image */
+/* Legibility scrim: darken lower-left where text sits, keep photo full-bleed */
 .hero > div:first-child::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 65%;
-  background: linear-gradient(to bottom, transparent 0%, light-dark(var(--color-parchment), var(--color-obsidian)) 100%);
+  inset: 0;
+  background:
+    linear-gradient(to right, rgb(0 0 0 / 62%) 0%, rgb(0 0 0 / 22%) 45%, transparent 75%),
+    linear-gradient(to top, rgb(0 0 0 / 55%) 0%, transparent 55%);
   pointer-events: none;
   z-index: 1;
 }
@@ -54,9 +53,9 @@
 .hero picture img {
   display: block;
   width: 100%;
-  max-height: 580px;
+  max-height: 640px;
   object-fit: cover;
-  opacity: 0.55;
+  opacity: 1;
 }
 
 /* Text overlay */
@@ -112,40 +111,38 @@
   }
 }
 
-/* Tagline */
+/* Tagline – tight all-caps label in evo red */
 .hero .hero-tagline {
   font-family: var(--font-family-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-gold);
+  color: #fff;
+  background-color: var(--color-rust);
+  padding: 4px 10px;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   margin: 0;
 }
 
-/* Heading */
+/* Heading – bold condensed, white over the photo */
 .hero h1 {
   margin: 0;
-  font-family: var(--font-family-serif);
-  font-size: clamp(2rem, 8vw, 4.5rem);
-  font-weight: 500;
-  line-height: 1.05;
-  color: light-dark(var(--color-ink), var(--color-parchment));
+  font-family: var(--font-family-condensed);
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgb(0 0 0 / 35%);
 }
 
 .hero h1 em {
-  font-weight: 400;
-  font-style: italic;
-  background: linear-gradient(135deg, var(--color-rust) 0%, var(--color-gold) 100%);
-  background-clip: text;
-  color: transparent;
-}
-
-.dark-scheme .hero h1 em,
-:root[data-theme='dark'] .hero h1 em {
-  background: linear-gradient(135deg, var(--color-rust-bright) 0%, var(--color-gold) 100%);
-  background-clip: text;
-  color: transparent;
+  font-weight: 700;
+  font-style: normal;
+  color: var(--color-rust-bright);
+  background: none;
+  -webkit-text-fill-color: currentcolor;
 }
 
 /* Body text — hidden on mobile */
@@ -153,10 +150,10 @@
   display: none;
   max-width: 550px;
   margin: 0;
-  font-family: var(--font-family-serif);
+  font-family: var(--body-font-family);
   font-size: 1.15rem;
-  color: light-dark(var(--color-ink), var(--color-muted));
-  line-height: 1.7;
+  color: rgb(255 255 255 / 92%);
+  line-height: 1.6;
   letter-spacing: 0.01em;
 }
 
@@ -177,17 +174,10 @@
   object-fit: contain;
 }
 
-/* Dark-mode image: blend into obsidian bg with soft edges */
+/* Dark theme keeps the photo full-bleed; scrim already provides legibility */
 .dark-scheme .hero .hero-img-dark picture img,
 :root[data-theme='dark'] .hero .hero-img-dark picture img {
-  opacity: 0.3;
-  mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 25%, transparent 100%);
-}
-
-/* Dark mode cinematic fade uses obsidian */
-.dark-scheme .hero > div:first-child::after,
-:root[data-theme='dark'] .hero > div:first-child::after {
-  background: linear-gradient(to bottom, transparent 0%, var(--color-obsidian) 100%);
+  opacity: 1;
 }
 
 /* Tablet: show body text */
@@ -205,8 +195,8 @@
   }
 
   .hero > div:last-child > div {
-    max-width: 1000px;
-    margin: 0 25%;
+    max-width: 760px;
+    margin: 0;
   }
 
   .hero h1 {
@@ -239,6 +229,24 @@
 
 .hero.no-image p:not(.button-container, .hero-tagline) {
   display: block;
+  color: light-dark(var(--color-ink), var(--color-muted));
+}
+
+/* No-image / solid-color heros have no photo scrim: restore themed text colors */
+.hero.no-image h1,
+.hero.rust h1,
+.hero.gold h1,
+.hero.ink h1 {
+  text-shadow: none;
+}
+
+.hero.no-image h1 {
+  color: light-dark(var(--color-ink), var(--color-parchment));
+}
+
+.hero.no-image .hero-tagline {
+  color: #fff;
+  background-color: var(--color-rust);
 }
 
 @media (width >= 900px) {
@@ -268,7 +276,8 @@
 :root .hero.rust h1 em {
   background: none;
   background-clip: unset;
-  color: var(--color-gold);
+  color: var(--color-yellow);
+  -webkit-text-fill-color: var(--color-yellow);
 }
 
 .hero.gold {
@@ -292,5 +301,6 @@
 :root .hero.ink h1 em {
   background: none;
   background-clip: unset;
-  color: var(--color-rust);
+  color: var(--color-rust-bright);
+  -webkit-text-fill-color: var(--color-rust-bright);
 }

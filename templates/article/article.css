@@ -64,7 +64,7 @@
   margin: 0 auto;
   width: 100%;
   padding-top: var(--space-m);
-  border-top: 1px solid light-dark(rgb(161 79 43 / 20%), rgb(245 242 237 / 18%));
+  border-top: 1px solid light-dark(rgb(231 53 44 / 20%), rgb(246 246 244 / 18%));
 }
 
 .article .hero .article-author {
@@ -79,7 +79,7 @@
   content: '·';
   margin-left: var(--space-m);
   font-style: normal;
-  color: light-dark(rgb(0 0 0 / 30%), rgb(245 242 237 / 35%));
+  color: light-dark(rgb(0 0 0 / 30%), rgb(246 246 244 / 35%));
 }
 
 .article .hero .article-date {
@@ -95,8 +95,8 @@
    ========================================================================== */
 
 .article .article-breadcrumb {
-  background-color: light-dark(rgb(161 79 43 / 4%), rgb(245 242 237 / 3%));
-  border-bottom: 1px solid light-dark(var(--color-gray-200), rgb(245 242 237 / 8%));
+  background-color: light-dark(rgb(231 53 44 / 4%), rgb(246 246 244 / 3%));
+  border-bottom: 1px solid light-dark(var(--color-gray-200), rgb(246 246 244 / 8%));
   margin: 0;
   padding: var(--space-m) var(--content-padding-inline);
 }

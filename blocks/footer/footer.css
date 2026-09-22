@@ -69,7 +69,7 @@ footer .footer .section:nth-child(3) li {
 
 footer .footer a:any-link {
   color: var(--color-parchment);
-  text-decoration-color: rgb(245 242 237 / 30%);
+  text-decoration-color: rgb(246 246 244 / 30%);
   transition: color 0.25s, text-decoration-color 0.25s, opacity 0.25s;
 }
 

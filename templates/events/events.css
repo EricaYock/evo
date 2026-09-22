@@ -35,9 +35,9 @@
 .events .event-meta-badge {
   display: inline-block;
   padding: 3px var(--space-m);
-  border: 1px solid light-dark(rgb(161 79 43 / 30%), rgb(209 106 62 / 35%));
+  border: 1px solid light-dark(rgb(231 53 44 / 30%), rgb(255 75 65 / 35%));
   border-radius: 20px;
-  background-color: light-dark(rgb(161 79 43 / 8%), rgb(209 106 62 / 10%));
+  background-color: light-dark(rgb(231 53 44 / 8%), rgb(255 75 65 / 10%));
   font-family: var(--font-family-mono);
   font-size: var(--body-font-size-xs);
   font-weight: 600;
