@@ -421,12 +421,13 @@
   font-size: 0.8rem;
 }
 
-/* Headline — big white condensed */
+/* Headline — big white, mixed-case (matches "evo is Turning 25" screenshot) */
 .hero.banner h1,
 .hero.banner.no-image h1 {
   color: #fff;
   font-size: clamp(2.6rem, 8vw, 5rem);
   line-height: 0.95;
+  text-transform: none;
   text-shadow: 0 2px 24px rgb(0 0 0 / 30%);
 }
 
@@ -447,15 +448,25 @@
   text-shadow: 0 1px 10px rgb(0 0 0 / 35%);
 }
 
-/* White pill CTA */
+/* White pill CTA — mixed-case label, crisp solid white (matches screenshot) */
 .hero.banner a.button:any-link {
   border-radius: 999px;
   border: none;
-  padding: 18px 44px;
+  padding: 16px 40px;
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
   background-color: #fff;
   background-image: none;
   color: var(--color-ink);
   box-shadow: 0 10px 30px rgb(0 0 0 / 25%);
+}
+
+/* Kill the diagonal sheen sweep from the global button so the pill stays clean */
+.hero.banner a.button:any-link::after {
+  content: none;
 }
 
 .hero.banner a.button:any-link:hover,
