@@ -188,6 +188,13 @@
   text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
 }
 
+/* Links inside the label sit over the photo — keep them white, not the global
+   dark link color (the visible label text is usually an <a>). */
+.cards.tiles .cards-card-body a:any-link {
+  color: #fff;
+  text-decoration: none;
+}
+
 /* Eyebrow (e.g. "Free Shipping on Bikes") sits above the label */
 .cards.tiles .cards-card-body p:not(:last-child) {
   font-family: var(--body-font-family);

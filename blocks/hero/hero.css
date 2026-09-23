@@ -365,19 +365,30 @@
   margin-top: var(--space-s);
 }
 
-.hero.promo a.button:any-link {
+/* Also match .button-container > a so the pill renders even where the
+   decorateButtons pipeline hasn't added the .button class (e.g. da.live canvas). */
+.hero.promo a.button:any-link,
+.hero.promo p.button-container > a:any-link {
+  display: inline-flex;
+  align-items: center;
   border-radius: 999px;
   border: none;
   padding: 20px 56px;
+  font-family: var(--font-family-condensed);
+  font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
   background-color: var(--color-yellow);
   color: var(--color-ink);
   box-shadow: 0 10px 30px rgb(0 0 0 / 30%);
 }
 
 .hero.promo a.button:any-link:hover,
-.hero.promo a.button:any-link:focus-visible {
+.hero.promo a.button:any-link:focus-visible,
+.hero.promo p.button-container > a:any-link:hover,
+.hero.promo p.button-container > a:any-link:focus-visible {
   background-color: #fff;
   color: var(--color-ink);
   transform: translateY(-2px);
@@ -457,8 +468,13 @@
   text-shadow: 0 1px 10px rgb(0 0 0 / 35%);
 }
 
-/* White pill CTA — mixed-case label, crisp solid white (matches screenshot) */
-.hero.banner a.button:any-link {
+/* White pill CTA — mixed-case label, crisp solid white (matches screenshot).
+   Also matches .button-container > a so it renders in da.live canvas where the
+   decorateButtons pipeline hasn't added the .button class. */
+.hero.banner a.button:any-link,
+.hero.banner p.button-container > a:any-link {
+  display: inline-flex;
+  align-items: center;
   border-radius: 999px;
   border: none;
   padding: 16px 40px;
@@ -467,6 +483,7 @@
   font-size: 1rem;
   letter-spacing: 0;
   text-transform: none;
+  text-decoration: none;
   background-color: #fff;
   background-image: none;
   color: var(--color-ink);
@@ -479,7 +496,9 @@
 }
 
 .hero.banner a.button:any-link:hover,
-.hero.banner a.button:any-link:focus-visible {
+.hero.banner a.button:any-link:focus-visible,
+.hero.banner p.button-container > a:any-link:hover,
+.hero.banner p.button-container > a:any-link:focus-visible {
   background-color: var(--color-yellow);
   color: var(--color-ink);
   transform: translateY(-2px);
