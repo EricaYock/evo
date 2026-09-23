@@ -412,6 +412,15 @@
   gap: var(--space-m);
 }
 
+/* The photo legibility scrim (.hero > div:first-child::after — a dark gradient)
+   is meant to darken a background photo so white text is readable. On the
+   no-image banner the text div itself is the first child, so the scrim would
+   overlay the content and mute it to gray. There's no photo here, so remove it. */
+.hero.banner.no-image > div:first-child::after {
+  content: none;
+  background: none;
+}
+
 /* Eyebrow */
 .hero.banner .hero-tagline {
   color: #fff;
