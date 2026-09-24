@@ -280,12 +280,13 @@ header nav .nav-brand a:any-link:focus-visible {
 
 header nav .nav-brand .icon.icon-logo {
     position: relative;
-    top: 5px;
+    top: 0;
   }
 
+/* evo's logo is a stacked (near-square) mark — size by height, let width follow */
 header nav .nav-brand :is(img, svg) {
-  width: min(200px, 42vw);
-  height: 45px;
+  width: auto;
+  height: 52px;
   object-fit: contain;
 }
 
@@ -852,9 +853,9 @@ header nav .nav-tools .nav-language-menu a:focus-visible {
       height: 36px;
     }
   
-    header nav .nav-brand .icon.icon-logo {
-      width: 100px;
-      height: 40px;
+    header nav .nav-brand .icon.icon-logo :is(img, svg) {
+      width: auto;
+      height: 42px;
     }
   
     header nav .nav-tools {
